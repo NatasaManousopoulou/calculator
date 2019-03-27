@@ -46,10 +46,11 @@ static constexpr int DATA_ID        = 13;
 static constexpr int PRESSURE_ID    = 14;
 static constexpr int ANGLE_ID       = 15;
 static constexpr int CURRENCY_ID    = 16;
+static constexpr int RUNNING_ID     = 17;
 // ^^^ THESE CONSTANTS SHOULD NEVER CHANGE ^^^
 
 // The order of items in this list determines the order of items in the menu.
-static constexpr array<const NavCategoryInitializer, 17> s_categoryManifest = {
+static constexpr array<const NavCategoryInitializer, 18> s_categoryManifest = {
     NavCategoryInitializer { ViewMode::Standard,    STANDARD_ID,    L"Standard",        L"StandardMode",             L"\uE8EF", CategoryGroupType::Calculator, MyVirtualKey::Number1, SUPPORTS_ALL      },
     NavCategoryInitializer { ViewMode::Scientific,  SCIENTIFIC_ID,  L"Scientific",      L"ScientificMode",           L"\uF196", CategoryGroupType::Calculator, MyVirtualKey::Number2, SUPPORTS_ALL      },
     NavCategoryInitializer { ViewMode::Programmer,  PROGRAMMER_ID,  L"Programmer",      L"ProgrammerMode",           L"\uECCE", CategoryGroupType::Calculator, MyVirtualKey::Number3, SUPPORTS_ALL      },
@@ -66,7 +67,8 @@ static constexpr array<const NavCategoryInitializer, 17> s_categoryManifest = {
     NavCategoryInitializer { ViewMode::Power,       POWER_ID,       L"Power",           L"CategoryName_Power",       L"\uE945", CategoryGroupType::Converter,  MyVirtualKey::None,    POSITIVE_ONLY     },
     NavCategoryInitializer { ViewMode::Data,        DATA_ID,        L"Data",            L"CategoryName_Data",        L"\uF20F", CategoryGroupType::Converter,  MyVirtualKey::None,    POSITIVE_ONLY     },
     NavCategoryInitializer { ViewMode::Pressure,    PRESSURE_ID,    L"Pressure",        L"CategoryName_Pressure",    L"\uEC4A", CategoryGroupType::Converter,  MyVirtualKey::None,    POSITIVE_ONLY     },
-    NavCategoryInitializer { ViewMode::Angle,       ANGLE_ID,       L"Angle",           L"CategoryName_Angle",       L"\uF515", CategoryGroupType::Converter,  MyVirtualKey::None,    POSITIVE_ONLY     }
+    NavCategoryInitializer { ViewMode::Angle,       ANGLE_ID,       L"Angle",           L"CategoryName_Angle",       L"\uF515", CategoryGroupType::Converter,  MyVirtualKey::None,    POSITIVE_ONLY     },
+    NavCategoryInitializer { ViewMode::Running,     RUNNING_ID,     L"Running",         L"CategoryName_Running",     L"\uEADA", CategoryGroupType::Converter,  MyVirtualKey::None,    POSITIVE_ONLY     }
 };
 
 // This function should only be used when storing the mode to app data.

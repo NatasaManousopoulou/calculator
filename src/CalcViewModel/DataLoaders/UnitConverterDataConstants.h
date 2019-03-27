@@ -162,7 +162,21 @@ namespace CalculatorApp
             Data_Zebibytes = UnitStart + 162,
             Data_Zetabits = UnitStart + 163,
             Data_Zetabytes = UnitStart + 164,
-            UnitEnd = Data_Zetabytes
+            Running_SpeedMilesPerHour = UnitStart + 165,
+            Running_SpeedKilometersPerHour = UnitStart + 166,
+            Running_PaceMinutesPerMile = UnitStart + 167,
+            Running_PaceMinutesPerKilometer = UnitStart + 168,
+            Running_RaceTime5K = UnitStart + 169,
+            Running_RaceTime10K = UnitStart + 170,
+            Running_RaceTimeHalfMarathon = UnitStart + 171,
+            Running_RaceTimeMarathon = UnitStart + 172,
+            Running_Intervals200MTime = UnitStart + 173,
+            Running_Intervals400MTime = UnitStart + 174,
+            Running_Intervals600MTime = UnitStart + 175,
+            Running_Intervals800MTime = UnitStart + 176,
+
+
+            UnitEnd = Running_Intervals800MTime
         };
     }
 }

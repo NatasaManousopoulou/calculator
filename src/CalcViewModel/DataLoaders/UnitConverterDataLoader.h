@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #pragma once
@@ -24,9 +24,44 @@ namespace CalculatorApp
 
         struct UnitData
         {
+            UnitData() {}
+            UnitData(CalculatorApp::Common::ViewMode categoryId, int unitId, double factor) :
+                categoryId(categoryId), unitId(unitId), factor(factor)
+            {}
+
             CalculatorApp::Common::ViewMode categoryId;
             int unitId;
             double factor;
+        };
+
+        struct BaseConverter
+        {
+            BaseConverter(double factor) : factor(factor) { }
+            virtual double ToBase(double value) = 0;
+            virtual double FromBase(double value) = 0;
+            double factor;
+        };
+        struct MultiplyConverter : BaseConverter
+        {
+            MultiplyConverter(double factor) : BaseConverter(factor) { }
+            double FromBase(double value) { return value * factor; }
+            double ToBase(double value) { return value / factor; }
+        };
+        struct DivideConverter : BaseConverter
+        {
+            DivideConverter(double factor) : BaseConverter(factor) { }
+            double Convert(double value) { return value == 0 ? 0 : factor / value; }
+            double FromBase(double value) { return Convert(value); }
+            double ToBase(double value) { return Convert(value); }
+        };
+
+        struct TriangularConversionUnitData : UnitData
+        {
+            TriangularConversionUnitData(CalculatorApp::Common::ViewMode categoryId, int unitId, const BaseConverter &converter) :
+                UnitData(categoryId, unitId, converter.factor), converter(converter)
+            {}
+
+            CalculatorApp::ViewModel::BaseConverter &converter;
         };
 
         struct ExplicitUnitConversionData : UnitConversionManager::ConversionData
@@ -62,6 +97,7 @@ namespace CalculatorApp
             void GetUnits(_In_ std::unordered_map<CalculatorApp::Common::ViewMode, std::vector<CalculatorApp::ViewModel::OrderedUnit>>& unitMap);
             void GetConversionData(_In_ std::unordered_map<CalculatorApp::Common::ViewMode, std::unordered_map<int, double>>& categoryToUnitConversionMap);
             void GetExplicitConversionData(_In_ std::unordered_map<int, std::unordered_map<int, UnitConversionManager::ConversionData>>& unitToUnitConversionList);
+            void GetTriangularConversionData(_In_ std::unordered_map<CalculatorApp::Common::ViewMode, std::unordered_map<int, BaseConverter & >>& categoryToUnitConversionMap);
 
             std::wstring GetLocalizedStringName(_In_ Platform::String^ stringId);
 

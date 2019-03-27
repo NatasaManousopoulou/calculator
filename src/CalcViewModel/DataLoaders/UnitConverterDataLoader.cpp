@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "pch.h"
@@ -364,6 +364,45 @@ void UnitConverterDataLoader::GetUnits(_In_ unordered_map<ViewMode, vector<Order
     angleUnits.push_back(OrderedUnit{ UnitConverterUnits::Angle_Radian, GetLocalizedStringName(L"UnitName_Radian"), GetLocalizedStringName(L"UnitAbbreviation_Radian"), 2, false, true, false });
     angleUnits.push_back(OrderedUnit{ UnitConverterUnits::Angle_Gradian, GetLocalizedStringName(L"UnitName_Gradian"), GetLocalizedStringName(L"UnitAbbreviation_Gradian"), 3});
     unitMap.emplace(ViewMode::Angle, angleUnits);
+
+    vector<OrderedUnit> runningUnits;
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_SpeedMilesPerHour, GetLocalizedStringName(L"UnitName_SpeedMilesPerHour"), GetLocalizedStringName(L"UnitAbbreviation_SpeedMilesPerHour"), 1, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_SpeedKilometersPerHour, GetLocalizedStringName(L"UnitName_SpeedKilometersPerHour"), GetLocalizedStringName(L"UnitAbbreviation_SpeedKilometersPerHour"), 2, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_PaceMinutesPerMile, GetLocalizedStringName(L"UnitName_PaceMinutesPerMile"), GetLocalizedStringName(L"UnitAbbreviation_PaceMinutesPerMile"), 3, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_PaceMinutesPerKilometer, GetLocalizedStringName(L"UnitName_PaceMinutesPerKilometer"), GetLocalizedStringName(L"UnitAbbreviation_PaceMinutesPerKilometer"), 4, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_RaceTime5K, GetLocalizedStringName(L"UnitName_RaceTime5K"), GetLocalizedStringName(L"UnitAbbreviation_RaceTime5K"), 5, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_RaceTime10K, GetLocalizedStringName(L"UnitName_RaceTime10K"), GetLocalizedStringName(L"UnitAbbreviation_RaceTime10K"), 6, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_RaceTimeHalfMarathon, GetLocalizedStringName(L"UnitName_RaceTimeHalfMarathon"), GetLocalizedStringName(L"UnitAbbreviation_RaceTimeHalfMarathon"), 7, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_RaceTimeMarathon, GetLocalizedStringName(L"UnitName_RaceTimeMarathon"), GetLocalizedStringName(L"UnitAbbreviation_RaceTimeMarathon"), 8, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_Intervals200MTime, GetLocalizedStringName(L"UnitName_Intervals200MTime"), GetLocalizedStringName(L"UnitAbbreviation_Intervals200MTime"), 9, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_Intervals400MTime, GetLocalizedStringName(L"UnitName_Intervals400MTime"), GetLocalizedStringName(L"UnitAbbreviation_Intervals400MTime"), 10, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_Intervals600MTime, GetLocalizedStringName(L"UnitName_Intervals600MTime"), GetLocalizedStringName(L"UnitAbbreviation_Intervals600MTime"), 11, true, false, false });
+    runningUnits.push_back(OrderedUnit{ UnitConverterUnits::Running_Intervals800MTime, GetLocalizedStringName(L"UnitName_Intervals800MTime"), GetLocalizedStringName(L"UnitAbbreviation_Intervals800MTime"), 12, true, false, false });
+    unitMap.emplace(ViewMode::Running, runningUnits);
+
+}
+
+void UnitConverterDataLoader::GetTriangularConversionData(_In_ unordered_map<ViewMode, unordered_map<int, const BaseConverter &>>& categoryToUnitConversionMap)
+{
+    static const MultiplyConverter mile(1.6);
+
+    static const vector<TriangularConversionUnitData> unitDataList = {
+        { ViewMode::Running, UnitConverterUnits::Running_SpeedMilesPerHour, mile }
+    };
+
+    for (TriangularConversionUnitData unitData : unitDataList)
+    {
+        if (categoryToUnitConversionMap.find(unitData.categoryId) == categoryToUnitConversionMap.end())
+        {
+            unordered_map<int, BaseConverter &> conversionData;
+            conversionData.insert(pair<int, BaseConverter &>(unitData.unitId, unitData.converter));
+            categoryToUnitConversionMap.insert(pair<ViewMode, unordered_map<int, BaseConverter &>>(unitData.categoryId, conversionData));
+        }
+        else
+        {
+            categoryToUnitConversionMap.at(unitData.categoryId).insert(pair<int, BaseConverter &>(unitData.unitId, unitData.converter));
+        }
+    }
 }
 
 void UnitConverterDataLoader::GetConversionData(_In_ unordered_map<ViewMode, unordered_map<int, double>>& categoryToUnitConversionMap)

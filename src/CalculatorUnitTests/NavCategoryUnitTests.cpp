@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "pch.h"
@@ -61,6 +61,7 @@ namespace CalculatorUnitTests
         VERIFY_ARE_EQUAL(13, NavCategory::Serialize(ViewMode::Data));
         VERIFY_ARE_EQUAL(14, NavCategory::Serialize(ViewMode::Pressure));
         VERIFY_ARE_EQUAL(15, NavCategory::Serialize(ViewMode::Angle));
+        VERIFY_ARE_EQUAL(16, NavCategory::Serialize(ViewMode::Running));
 
         VERIFY_ARE_EQUAL(-1, NavCategory::Serialize(ViewMode::None));
     }
@@ -88,6 +89,7 @@ namespace CalculatorUnitTests
         VERIFY_ARE_EQUAL(ViewMode::Data, NavCategory::Deserialize(ref new Box<int>(13)));
         VERIFY_ARE_EQUAL(ViewMode::Pressure, NavCategory::Deserialize(ref new Box<int>(14)));
         VERIFY_ARE_EQUAL(ViewMode::Angle, NavCategory::Deserialize(ref new Box<int>(15)));
+        VERIFY_ARE_EQUAL(ViewMode::Running, NavCategory::Deserialize(ref new Box<int>(16)));
     }
 
     void NavCategoryUnitTests::Deserialize_AllInvalid()
@@ -119,6 +121,7 @@ namespace CalculatorUnitTests
         VERIFY_IS_TRUE(NavCategory::IsValidViewMode(ViewMode::Data));
         VERIFY_IS_TRUE(NavCategory::IsValidViewMode(ViewMode::Pressure));
         VERIFY_IS_TRUE(NavCategory::IsValidViewMode(ViewMode::Angle));
+        VERIFY_IS_TRUE(NavCategory::IsValidViewMode(ViewMode::Running));
     }
 
     void NavCategoryUnitTests::IsValidViewMode_AllInvalid()
@@ -155,6 +158,7 @@ namespace CalculatorUnitTests
         VERIFY_IS_FALSE(NavCategory::IsCalculatorViewMode(ViewMode::Data));
         VERIFY_IS_FALSE(NavCategory::IsCalculatorViewMode(ViewMode::Pressure));
         VERIFY_IS_FALSE(NavCategory::IsCalculatorViewMode(ViewMode::Angle));
+        VERIFY_IS_FALSE(NavCategory::IsCalculatorViewMode(ViewMode::Running));
     }
 
     void NavCategoryUnitTests::IsDateCalculatorViewMode()
@@ -178,6 +182,7 @@ namespace CalculatorUnitTests
         VERIFY_IS_FALSE(NavCategory::IsDateCalculatorViewMode(ViewMode::Data));
         VERIFY_IS_FALSE(NavCategory::IsDateCalculatorViewMode(ViewMode::Pressure));
         VERIFY_IS_FALSE(NavCategory::IsDateCalculatorViewMode(ViewMode::Angle));
+        VERIFY_IS_FALSE(NavCategory::IsDateCalculatorViewMode(ViewMode::Running));
     }
 
     void NavCategoryUnitTests::IsConverterViewMode()
@@ -201,6 +206,7 @@ namespace CalculatorUnitTests
         VERIFY_IS_TRUE(NavCategory::IsConverterViewMode(ViewMode::Data));
         VERIFY_IS_TRUE(NavCategory::IsConverterViewMode(ViewMode::Pressure));
         VERIFY_IS_TRUE(NavCategory::IsConverterViewMode(ViewMode::Angle));
+        VERIFY_IS_TRUE(NavCategory::IsConverterViewMode(ViewMode::Running));
     }
 
     void NavCategoryUnitTests::GetFriendlyName()
@@ -222,6 +228,7 @@ namespace CalculatorUnitTests
         VERIFY_ARE_EQUAL(StringReference(L"Data"), NavCategory::GetFriendlyName(ViewMode::Data));
         VERIFY_ARE_EQUAL(StringReference(L"Pressure"), NavCategory::GetFriendlyName(ViewMode::Pressure));
         VERIFY_ARE_EQUAL(StringReference(L"Angle"), NavCategory::GetFriendlyName(ViewMode::Angle));
+        VERIFY_ARE_EQUAL(StringReference(L"Running"), NavCategory::GetFriendlyName(ViewMode::Running));
 
         VERIFY_ARE_EQUAL(StringReference(L"None"), NavCategory::GetFriendlyName(ViewMode::None));
     }
@@ -246,6 +253,7 @@ namespace CalculatorUnitTests
         VERIFY_ARE_EQUAL(CategoryGroupType::Converter, NavCategory::GetGroupType(ViewMode::Data));
         VERIFY_ARE_EQUAL(CategoryGroupType::Converter, NavCategory::GetGroupType(ViewMode::Pressure));
         VERIFY_ARE_EQUAL(CategoryGroupType::Converter, NavCategory::GetGroupType(ViewMode::Angle));
+        VERIFY_ARE_EQUAL(CategoryGroupType::Converter, NavCategory::GetGroupType(ViewMode::Running));
     }
 
     void NavCategoryUnitTests::GetIndex()
@@ -268,7 +276,8 @@ namespace CalculatorUnitTests
             ViewMode::Power,
             ViewMode::Data,
             ViewMode::Pressure,
-            ViewMode::Angle
+            ViewMode::Angle,
+            ViewMode::Running
         };
 
         for (size_t index = 0; index < orderedModes.size(); index++)
@@ -300,7 +309,8 @@ namespace CalculatorUnitTests
             ViewMode::Power,
             ViewMode::Data,
             ViewMode::Pressure,
-            ViewMode::Angle
+            ViewMode::Angle,
+            ViewMode::Running
         };
 
         for (size_t pos = 1; pos <= orderedModes.size(); pos++)
@@ -341,6 +351,7 @@ namespace CalculatorUnitTests
         VERIFY_ARE_EQUAL(10, NavCategory::GetIndexInGroup(ViewMode::Data, CategoryGroupType::Converter));
         VERIFY_ARE_EQUAL(11, NavCategory::GetIndexInGroup(ViewMode::Pressure, CategoryGroupType::Converter));
         VERIFY_ARE_EQUAL(12, NavCategory::GetIndexInGroup(ViewMode::Angle, CategoryGroupType::Converter));
+        VERIFY_ARE_EQUAL(13, NavCategory::GetIndexInGroup(ViewMode::Running, CategoryGroupType::Converter));
 
         VERIFY_ARE_EQUAL(-1, NavCategory::GetIndexInGroup(ViewMode::None, CategoryGroupType::Calculator));
         VERIFY_ARE_EQUAL(-1, NavCategory::GetIndexInGroup(ViewMode::None, CategoryGroupType::Converter));
@@ -404,5 +415,6 @@ namespace CalculatorUnitTests
         ValidateNavCategory(converterCategories, 10u, ViewMode::Data, 15);
         ValidateNavCategory(converterCategories, 11u, ViewMode::Pressure, 16);
         ValidateNavCategory(converterCategories, 12u, ViewMode::Angle, 17);
+        ValidateNavCategory(converterCategories, 13u, ViewMode::Angle, 18);
     }
 }

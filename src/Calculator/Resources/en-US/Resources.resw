@@ -1533,6 +1533,10 @@
     <value>Angle</value>
     <comment>Unit conversion category name called Angle</comment>
   </data>
+  <data name="CategoryName_RunningText" xml:space="preserve">
+    <value>Running</value>
+    <comment>Unit conversion category name called Running</comment>
+  </data>
   <data name="CategoryName_CurrencyText" xml:space="preserve">
     <value>Currency</value>
     <comment>Unit conversion category name called Currency</comment>
@@ -2865,6 +2869,30 @@
     <value>Yobibytes</value>
     <comment>A measurement unit for data. (Please choose the most appropriate plural form to fit any number between 0 and 999,999,999,999,999)</comment>
   </data>
+  <data name="UnitName_SpeedMilesPerHour" xml:space="preserve"><value>Speed: Miles per hour</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_SpeedMilesPerHour" xml:space="preserve"><value>mph</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_SpeedKilometersPerHour" xml:space="preserve"><value>Speed: Kilometers per hour</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_SpeedKilometersPerHour" xml:space="preserve"><value>kph</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_PaceMinutesPerMile" xml:space="preserve"><value>Pace: Minutes per mile</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_PaceMinutesPerMile" xml:space="preserve"><value>min/mile</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_PaceMinutesPerKilometer" xml:space="preserve"><value>Pace: Minutes per kilometer</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_PaceMinutesPerKilometer" xml:space="preserve"><value>min/km</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_RaceTime5K" xml:space="preserve"><value>Race time: 5K</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_RaceTime5K" xml:space="preserve"><value>/5K</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_RaceTime10K" xml:space="preserve"><value>Race time: 10K</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_RaceTime10K" xml:space="preserve"><value>/10K</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_RaceTimeHalfMarathon" xml:space="preserve"><value>Race time: Half marathon</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_RaceTimeHalfMarathon" xml:space="preserve"><value>/HM</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_RaceTimeMarathon" xml:space="preserve"><value>Race time: Marathon</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_RaceTimeMarathon" xml:space="preserve"><value>/Marathon</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_Intervals200MTime" xml:space="preserve"><value>Intervals: 200m time</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_Intervals200MTime" xml:space="preserve"><value>/200m</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_Intervals400MTime" xml:space="preserve"><value>Intervals: 400m time</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_Intervals400MTime" xml:space="preserve"><value>/400m</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_Intervals600MTime" xml:space="preserve"><value>Intervals: 600m time</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_Intervals600MTime" xml:space="preserve"><value>/600m</value><comment>An abbreviation for a measurement unit related to running</comment></data>
+  <data name="UnitName_Intervals800MTime" xml:space="preserve"><value>Intervals: 800m time</value><comment>A measurement unit for running. (Please the most appropriate plural form)</comment></data>
+  <data name="UnitAbbreviation_Intervals800MTime" xml:space="preserve"><value>/800m</value><comment>An abbreviation for a measurement unit related to running</comment></data>
   <data name="DateCalculationModeText" xml:space="preserve">
     <value>Date Calculation</value>
   </data>
